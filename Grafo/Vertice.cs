@@ -13,6 +13,8 @@ namespace Grafo
 
         public Vertice() { Aristas = new List<Arista>(); }
 
+        public Vertice(string nombre) { Nombre = nombre; Aristas = new List<Arista>(); }
+
         public Vertice(string nombre, params Arista[] aristas)
         {
             Aristas = new List<Arista>();

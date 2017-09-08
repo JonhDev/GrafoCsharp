@@ -10,9 +10,23 @@ namespace Grafo
     {
         static void Main(string[] args)
         {
+
+
             GrafoObject g = new GrafoObject();
-            g.AgregarConexion(new Vertice() { Nombre = "A" }, new Vertice() { Nombre = "B" }, 5);
-            Console.WriteLine(g.AristasL[0].ToString());
+            Vertice a = new Vertice("A");
+            Vertice b = new Vertice("B");
+            Vertice c = new Vertice("C");
+            Vertice d = new Vertice("D");
+            Vertice e = new Vertice("E");
+            Vertice f = new Vertice("F");
+            Vertice gV = new Vertice("G");
+
+            g.AgregarConexion(a, b, 5);
+            g.AgregarConexion(a, d, 4);
+            foreach (var item in g.AristasL)
+            {
+                Console.WriteLine($"{item.ToString()} \n");
+            }
             Console.ReadKey();
         }
     }
