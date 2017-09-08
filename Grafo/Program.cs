@@ -23,6 +23,10 @@ namespace Grafo
 
             g.AgregarConexion(a, b, 5);
             g.AgregarConexion(a, d, 4);
+            g.AgregarConexion(b, c, 10);
+            g.AgregarConexion(b, d, 7);
+            g.AgregarConexion(d, c, 3);
+
             foreach (var item in g.AristasL)
             {
                 Console.WriteLine($"{item.ToString()} \n");
