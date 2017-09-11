@@ -88,6 +88,47 @@ namespace Grafo
 
             return matriz;
         }
-        
+
+        private void Imprimir(int[,] distance, int verticesCount)
+        {
+            Console.WriteLine("Caminos cortos: ");
+
+            for (int i = 0; i < verticesCount; ++i)
+            {
+                for (int j = 0; j < verticesCount; ++j)
+                {
+                    if (distance[i, j] == INF)
+                        Console.Write("INF".PadLeft(7));
+                    else
+                        Console.Write(distance[i, j].ToString().PadLeft(7));
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        public void ImprimirCaminosCortos(int[,] graph, int verticesCount) 
+        {
+            int[,] distance = new int[verticesCount, verticesCount];
+
+            for (int i = 0; i < verticesCount; ++i)
+                for (int j = 0; j < verticesCount; ++j)
+                    distance[i, j] = graph[i, j];
+
+            for (int k = 0; k < verticesCount; ++k)
+            {
+                for (int i = 0; i < verticesCount; ++i)
+                {
+                    for (int j = 0; j < verticesCount; ++j)
+                    {
+                        if (distance[i, k] + distance[k, j] < distance[i, j])
+                            distance[i, j] = distance[i, k] + distance[k, j];
+                    }
+                }
+            }
+
+            Imprimir(distance, verticesCount);
+        }
+
     }
 }

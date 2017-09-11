@@ -27,11 +27,6 @@ namespace Grafo
             g.AgregarConexion(b, d, 7);
             g.AgregarConexion(d, c, 3);
 
-            foreach (var item in g.VerticesL)
-            {
-                Console.WriteLine($"{item.Nombre} \n");
-            }
-
             foreach (var item in g.AristasL)
             {
                 Console.WriteLine(item.ToString());
@@ -52,6 +47,9 @@ namespace Grafo
                 sb.Append("\n");
             }
             Console.WriteLine(sb.ToString());
+
+
+            g.ImprimirCaminosCortos(matriz, g.VerticesL.Count);
             Console.ReadKey();
         }
     }
