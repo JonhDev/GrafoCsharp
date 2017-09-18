@@ -24,4 +24,27 @@ namespace Grafo
         }
 
     }
+
+    /// <summary>
+    /// Crea un Vertice generico de dos tipos, T como tipo de vertice y U como tipo de arista
+    /// </summary>
+    /// <typeparam name="T">Tipo de vertice</typeparam>
+    /// <typeparam name="U">Tipo de arista</typeparam>
+    public class Vertice<T, U>
+    {
+        public T Objeto { get; set; }
+        public List<Arista<U, T>> Aristas { get; set; }
+
+        public Vertice(T vertice)
+        {
+            Objeto = vertice;
+            Aristas = new List<Arista<U, T>>();
+        }
+
+        public override string ToString()
+        {
+            return Objeto.ToString();
+        }
+    }
+
 }

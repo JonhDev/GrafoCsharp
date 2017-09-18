@@ -10,47 +10,79 @@ namespace Grafo
     {
         static void Main(string[] args)
         {
+            //Grafo Generico
+            string opc = null;
+            GrafoObject<Colonias, Informacion> gGenerico = new GrafoObject<Colonias, Informacion>();
+            List<Colonias> listaColonias = new List<Colonias>();
 
-
-            GrafoObject g = new GrafoObject();
-            Vertice a = new Vertice("A");
-            Vertice b = new Vertice("B");
-            Vertice c = new Vertice("C");
-            Vertice d = new Vertice("D");
-            Vertice e = new Vertice("E");
-            Vertice f = new Vertice("F");
-            Vertice gV = new Vertice("G");
-
-            g.AgregarConexion(a, b, 5);
-            g.AgregarConexion(a, d, 4);
-            g.AgregarConexion(b, c, 10);
-            g.AgregarConexion(b, d, 7);
-            g.AgregarConexion(d, c, 3);
-
-            foreach (var item in g.AristasL)
+            gGenerico.ConexionRepetidaEventHandler += (obj, arg) =>
             {
-                Console.WriteLine(item.ToString());
-            }
-
-            Console.WriteLine("\n\n");
-
-            var matriz  = g.ConvertirListaVerticesAArray();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < g.VerticesL.Count; i++)
-            {
-                sb.Append(g.VerticesL[i].Nombre + "    ");
-                for (int j = 0; j < g.VerticesL.Count; j++)
+                Console.WriteLine(arg.Mensaje + "\n¿Deseas modificar su peso? (s/n)");
+                string res = Console.ReadLine();
+                if (res.Equals("s"))
                 {
-                    sb.Append(matriz[i, j] + " ");
+                    Console.Write("Ingrese el nuevo costo entre las colonias: ");
+                    int costo = int.Parse(Console.ReadLine());
+                    Arista<Informacion, Colonias> arista = obj as Arista<Informacion, Colonias>;
+                    arista.Objeto = new Informacion { CostoTraslado = costo };
                 }
+            };
 
-                sb.Append("\n");
-            }
-            Console.WriteLine(sb.ToString());
-
-
-            g.ImprimirCaminosCortos(matriz, g.VerticesL.Count);
-            Console.ReadKey();
+            do
+            {
+                Console.WriteLine("Creacion de grafos genericos");
+                Console.WriteLine("a. Crear Colonia");
+                Console.WriteLine("b. Crear conexion entre colonias");
+                Console.WriteLine("c. Modificar conexion entre colonias");
+                Console.WriteLine("d. Mostrar conexiones");
+                Console.WriteLine("e. Salir");
+                Console.WriteLine("======================================================");
+                Console.Write("Selecciona una opcion: ");
+                opc = Console.ReadLine();
+                Console.Clear();
+                switch (opc)
+                {
+                    case "a":
+                        Console.Write("Ingresa el nombre de la colonia: ");
+                        string nombre = Console.ReadLine();
+                        Console.Write("Ingresa el codigo postal de la colonia: ");
+                        string codPos = Console.ReadLine();
+                        Console.Write("Ingresa el numero de poblacion de la colonia: ");
+                        int pobla = int.Parse(Console.ReadLine());
+                        listaColonias.Add(new Colonias { Nombre = nombre, CodPostal = codPos, Habitantes = pobla });
+                        Console.Clear();
+                        Console.WriteLine("--------------------Creada!---------------------\n\n");
+                        break;
+                    case "b":
+                        for(int i = 0; i < listaColonias.Count; i++ )
+                            Console.WriteLine($"{i+1}. {listaColonias[i]}");
+                        Console.Write("Ingrese el numero de la colonia incial: ");
+                        int nIni = int.Parse(Console.ReadLine());
+                        Console.Write("Ingrese el numero de la colonia final: ");
+                        int nfin = int.Parse(Console.ReadLine());
+                        Console.Write("Ingrese el Costo de traslado de las colonias: ");
+                        int costo = int.Parse(Console.ReadLine());
+                        gGenerico.AgregarConexion(new Vertice<Colonias, Informacion>(listaColonias[nIni - 1])
+                            , new Vertice<Colonias, Informacion>(listaColonias[nfin - 1])
+                            , new Informacion { CostoTraslado = costo });
+                        Console.Clear();
+                        Console.WriteLine("--------------------Creada!---------------------\n\n");
+                        break;
+                    case "c":
+                        break;
+                    case "d":
+                        Console.WriteLine("<==============> Conexiones <==============>\n");
+                        gGenerico.ImprimirGrafo();
+                        Console.WriteLine("\n\n--------------------------------------------");
+                        break;
+                    case "e":
+                        Console.WriteLine("Adios");
+                        break;
+                    default:
+                        Console.WriteLine("!!!!!!!!!!!!!!!!!! --Opcion no vaida-- !!!!!!!!!!!!!!!!!!\n\n");
+                        break;
+                }
+            } while (!opc.Equals("e"));
         }
     }
 }
