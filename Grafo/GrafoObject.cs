@@ -129,6 +129,87 @@ namespace Grafo
 
             Imprimir(distance, verticesCount);
         }
+    }
 
+    /// <summary>
+    /// Crear un grafo generico de dos tipos, T como tipo de vertices a manejar y U como tipo de aristas a manejar
+    /// </summary>
+    /// <typeparam name="T">Tipo de Vertices que manejara el grafo</typeparam>
+    /// <typeparam name="U">Tipo de aristas que manejara el grafo</typeparam>
+    public class GrafoObject<T, U>
+    {
+        public List<Vertice<T,U>> VerticesLis { get; set; }
+        public List<Arista<U,T>> AristasLis { get; set; }
+
+        //Se crea delegado y evento de una conexion repetida
+        public delegate void ConexionRepetidaEvent(Object sender, ConexionEventArgs args);
+        public event ConexionRepetidaEvent ConexionRepetidaEventHandler;
+
+        public GrafoObject()
+        {
+            VerticesLis = new List<Vertice<T, U>>();
+            AristasLis = new List<Arista<U, T>>();
+        }
+
+        /// <summary>
+        /// Agrega conexion entre dos vertices con una arista
+        /// </summary>
+        /// <param name="inicial">Vertice inicial de la conexión</param>
+        /// <param name="final">Vertice final de la conexión</param>
+        /// <param name="peso">Objeto que representa el peso de la arista</param>
+        public void AgregarConexion(Vertice<T,U> inicial, Vertice<T,U> final, U peso)
+        {
+            //Se verifica que la conexión no exista, si existe se lanza un evento que no detiene la ejecución del programa
+            var aris = AristasLis.Where(a =>
+            a.Vertices.inicial.ToString().Equals(inicial.ToString()) 
+            && a.Vertices.final.ToString().Equals(final.ToString())).FirstOrDefault();
+            if(aris != null)
+            {
+                if (ConexionRepetidaEventHandler != null)
+                    ConexionRepetidaEventHandler(aris, new ConexionEventArgs("La conexion ya existe"));
+            }
+            //Si no se agrega normalmente la conexión
+            else
+            {
+                Arista<U, T> arista = new Arista<U, T>(peso, inicial, final);
+
+                //Al vertice inicial y final se le avisan sus aristas
+                inicial.Aristas.Add(arista);
+                final.Aristas.Add(arista);
+
+                //Se agregan los vertices y aristas a la lista del grafo para que sepa cuales tiene, se usa ExisteVertice que retorna un bool
+                if (!ExisteVertice(inicial))
+                    VerticesLis.Add(inicial);
+                if (!ExisteVertice(final))
+                    VerticesLis.Add(final);
+                AristasLis.Add(arista);
+            }
+        }
+
+        private bool ExisteVertice(Vertice<T,U> vertice)
+        {
+            var it = VerticesLis.Where(x => x.ToString().Equals(vertice.ToString())).FirstOrDefault();
+            if (it == null)
+                return false;
+            return true;
+        }
+
+        public void ImprimirGrafo()
+        {
+            foreach (var item in AristasLis)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+    }
+
+    public class ConexionEventArgs: EventArgs
+    {
+        public string Mensaje { get; set; }
+
+        public ConexionEventArgs(string mensaje)
+        {
+            Mensaje = mensaje;
+        }
     }
 }

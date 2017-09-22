@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arista.cs" />
+    <Compile Include="Colonias.cs" />
     <Compile Include="GrafoObject.cs" />
+    <Compile Include="IVertice.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vertice.cs" />
