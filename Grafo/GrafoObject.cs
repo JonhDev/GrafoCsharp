@@ -138,8 +138,8 @@ namespace Grafo
     /// <typeparam name="U">Tipo de aristas que manejara el grafo</typeparam>
     public class GrafoObject<T, U>
     {
-        public List<Vertice<T,U>> VerticesLis { get; set; }
-        public List<Arista<U,T>> AristasLis { get; set; }
+        public List<Vertice<T, U>> VerticesLis { get; set; }
+        public List<Arista<U, T>> AristasLis { get; set; }
 
         //Se crea delegado y evento de una conexion repetida
         public delegate void ConexionRepetidaEvent(Object sender, ConexionEventArgs args);
@@ -159,22 +159,21 @@ namespace Grafo
         /// <param name="peso">Objeto que representa el peso de la arista</param>
         public void AgregarConexion(Vertice<T,U> inicial, Vertice<T,U> final, U peso)
         {
-            //Se verifica que la conexión no exista, si existe se lanza un evento que no detiene la ejecución del programa
+            //Se verifica que la conexión no exista, si existe se lanza un evento para que el usuario controle el cambio
             var aris = AristasLis.Where(a =>
             a.Vertices.inicial.ToString().Equals(inicial.ToString()) 
             && a.Vertices.final.ToString().Equals(final.ToString())).FirstOrDefault();
             if(aris != null)
             {
                 if (ConexionRepetidaEventHandler != null)
-                    ConexionRepetidaEventHandler(aris, new ConexionEventArgs("La conexion ya existe"));
+                    ConexionRepetidaEventHandler(aris, new ConexionEventArgs("La conexion ya existe") { Peso = peso });
             }
             //Si no se agrega normalmente la conexión
             else
             {
                 Arista<U, T> arista = new Arista<U, T>(peso, inicial, final);
-
                 //Al vertice inicial y final se le avisan sus aristas
-                inicial.Aristas.Add(arista);
+                //inicial.Aristas.Add(arista);
                 final.Aristas.Add(arista);
 
                 //Se agregan los vertices y aristas a la lista del grafo para que sepa cuales tiene, se usa ExisteVertice que retorna un bool
@@ -206,6 +205,7 @@ namespace Grafo
     public class ConexionEventArgs: EventArgs
     {
         public string Mensaje { get; set; }
+        public object Peso { get; set; }
 
         public ConexionEventArgs(string mensaje)
         {

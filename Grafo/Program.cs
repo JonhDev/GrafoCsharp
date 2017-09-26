@@ -17,14 +17,15 @@ namespace Grafo
 
             gGenerico.ConexionRepetidaEventHandler += (obj, arg) =>
             {
-                Console.WriteLine(arg.Mensaje + "\n¿Deseas modificar su peso? (s/n)");
+                Console.WriteLine(arg.Mensaje + "\n¿Deseas modificar su peso con el que acabas de dar? (s/n)");
                 string res = Console.ReadLine();
                 if (res.Equals("s"))
                 {
-                    Console.Write("Ingrese el nuevo costo entre las colonias: ");
-                    int costo = int.Parse(Console.ReadLine());
+                    
+                    //int costo = int.Parse(Console.ReadLine());
                     Arista<Informacion, Colonias> arista = obj as Arista<Informacion, Colonias>;
-                    arista.Objeto = new Informacion { CostoTraslado = costo };
+                    arista.Objeto = arg.Peso as Informacion;
+                    Console.Write($"El nuevo peso de la conexion es: {arista.Objeto.CostoTraslado} ");
                 }
             };
 
