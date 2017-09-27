@@ -185,6 +185,35 @@ namespace Grafo
             }
         }
 
+        public bool EliminarConexion(Arista<U, T> arista)
+        {
+            Arista<U, T> temporal = AristasLis.Where(x => arista.Vertices.inicial.ToString() == x.Vertices.inicial.ToString() &&
+             arista.Vertices.final.ToString() == x.Vertices.final.ToString()).FirstOrDefault();
+
+            if(temporal != null)
+            {
+                for (int i = 0; i < VerticesLis.Count; i++)
+                {
+                    for (int j = 0; j < VerticesLis[i].Aristas.Count; j++)
+                    {
+                        if (VerticesLis[i].Aristas[j] == temporal)
+                        {
+                            VerticesLis[i].Aristas.RemoveAt(j);
+                            
+                        }                        
+
+                    }
+
+                }
+
+                AristasLis.Remove(temporal);
+                return true;
+            }
+
+            return false;
+
+        }
+
         private bool ExisteVertice(Vertice<T,U> vertice)
         {
             var it = VerticesLis.Where(x => x.ToString().Equals(vertice.ToString())).FirstOrDefault();

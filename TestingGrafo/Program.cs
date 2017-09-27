@@ -36,7 +36,8 @@ namespace TestingGrafo
                 Console.WriteLine("b. Crear conexion entre paises");
                 Console.WriteLine("c. Mostrar conexiones");
                 Console.WriteLine("d. Mostrar paises registrados");
-                Console.WriteLine("e. Salir");
+                Console.WriteLine("e. Eliminar conexion");
+                Console.WriteLine("f. Salir");
                 Console.WriteLine("======================================================");
                 Console.Write("Selecciona una opcion: ");
                 opc = Console.ReadLine();
@@ -81,13 +82,24 @@ namespace TestingGrafo
                         Console.WriteLine("\n\n--------------------------------------------");
                         break;
                     case "e":
+                        for (int i = 1; i <= grafo.AristasLis.Count; i++)
+                            Console.WriteLine($"{i}.- {grafo.AristasLis[i-1]}");
+                        Console.Write("Cual deseas eliminar? ");
+                        int pos = int.Parse(Console.ReadLine());
+                        Console.Clear();
+                        if(grafo.EliminarConexion(grafo.AristasLis[pos]))
+                            Console.WriteLine("------------------ Eliminado -----------------------");
+                        else
+                            Console.WriteLine("------------------ Error al eliminar -----------------------");
+                        break;
+                    case "f":
                         Console.WriteLine("Adios");
                         break;
                     default:
                         Console.WriteLine("!!!!!!!!!!!!!!!!!! --Opcion no vaida-- !!!!!!!!!!!!!!!!!!\n\n");
                         break;
                 }
-            } while (!opc.Equals("e"));
+            } while (!opc.Equals("f"));
         }
     }
 }
