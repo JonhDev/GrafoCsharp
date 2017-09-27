@@ -160,7 +160,7 @@ namespace Grafo
         public void AgregarConexion(Vertice<T,U> inicial, Vertice<T,U> final, U peso)
         {
             //Se verifica que la conexión no exista, si existe se lanza un evento para que el usuario controle el cambio
-            var aris = AristasLis.Where(a =>
+            Arista<U, T> aris = AristasLis.Where(a =>
             a.Vertices.inicial.ToString().Equals(inicial.ToString()) 
             && a.Vertices.final.ToString().Equals(final.ToString())).FirstOrDefault();
             if(aris != null)

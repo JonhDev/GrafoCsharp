@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafo", "Grafo\Grafo.csproj", "{16E25961-96AC-418D-B6EA-A0D631AF75BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingGrafo", "TestingGrafo\TestingGrafo.csproj", "{D782BCEF-3789-485B-8166-CF3D18DF37FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{16E25961-96AC-418D-B6EA-A0D631AF75BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16E25961-96AC-418D-B6EA-A0D631AF75BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16E25961-96AC-418D-B6EA-A0D631AF75BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
