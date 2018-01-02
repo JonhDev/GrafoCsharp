@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="GrafoUI.VerticeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GrafoUI"
+             mc:Ignorable="d" 
+             AllowDrop="True"
+             d:DesignHeight="{Binding HeightVerticeProp, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+             d:DesignWidth="{Binding WidthVerticeProp, RelativeSource={RelativeSource AncestorType=UserControl}}">
+    <Grid>
+        <Ellipse x:Name="elipse" 
+                 Width="{Binding WidthVerticeProp, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                 Height="{Binding HeightVerticeProp, 
+                 RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                 Fill="{Binding VerticeFill, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        <TextBlock x:Name="text" Foreground="White" Text="{Binding TextVerticeProp, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

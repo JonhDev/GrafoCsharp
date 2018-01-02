@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafo", "Grafo\Grafo.csproj", "{16E25961-96AC-418D-B6EA-A0D631AF75BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingGrafo", "TestingGrafo\TestingGrafo.csproj", "{D782BCEF-3789-485B-8166-CF3D18DF37FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafoUI", "GrafoUI\GrafoUI.csproj", "{77289961-9AE0-4DEA-A810-BAF0FD3B2C58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrowheads", "..\..\..\..\Documents\Arrowheads\Arrowheads.csproj", "{1F310940-B462-458E-8134-1C9B049B16A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D782BCEF-3789-485B-8166-CF3D18DF37FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77289961-9AE0-4DEA-A810-BAF0FD3B2C58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77289961-9AE0-4DEA-A810-BAF0FD3B2C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77289961-9AE0-4DEA-A810-BAF0FD3B2C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77289961-9AE0-4DEA-A810-BAF0FD3B2C58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F310940-B462-458E-8134-1C9B049B16A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F310940-B462-458E-8134-1C9B049B16A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F310940-B462-458E-8134-1C9B049B16A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F310940-B462-458E-8134-1C9B049B16A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

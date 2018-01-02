@@ -14,7 +14,6 @@ namespace Grafo
             string opc = null;
             GrafoObject<Colonias, Informacion> gGenerico = new GrafoObject<Colonias, Informacion>();
             List<Colonias> listaColonias = new List<Colonias>();
-
             gGenerico.ConexionRepetidaEventHandler += (obj, arg) =>
             {
                 Console.WriteLine(arg.Mensaje + "\n¿Deseas modificar su peso con el que acabas de dar? (s/n)");

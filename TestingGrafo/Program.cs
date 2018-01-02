@@ -21,7 +21,6 @@ namespace TestingGrafo
                 string res = Console.ReadLine();
                 if (res.Equals("s"))
                 {
-
                     //int costo = int.Parse(Console.ReadLine());
                     Arista<Distancias, Pais> arista = obj as Arista<Distancias, Pais>;
                     arista.Objeto = arg.Peso as Distancias;
@@ -31,7 +30,9 @@ namespace TestingGrafo
 
             do
             {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("Creacion de grafos genericos");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("a. Registrar Pais");
                 Console.WriteLine("b. Crear conexion entre paises");
                 Console.WriteLine("c. Mostrar conexiones");
@@ -53,7 +54,9 @@ namespace TestingGrafo
                         string moneda = Console.ReadLine();
                         listaPaises.Add(new Pais {  Nombre = nombre, CodPais = codPais, Moneda = moneda });
                         Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine($"--------------------{nombre} ha sido creado!---------------------\n\n");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case "b":
                         for (int i = 0; i < listaPaises.Count; i++)
@@ -68,18 +71,28 @@ namespace TestingGrafo
                             , new Vertice<Pais, Distancias>(listaPaises[nfin - 1])
                             , new Distancias { Kilometros = dista });
                         Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("--------------------Creada!---------------------\n\n");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case "c":
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("<==============> Conexiones <==============>\n");
+                        Console.ForegroundColor = ConsoleColor.White;
                         grafo.ImprimirGrafo();
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("\n\n--------------------------------------------");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case "d":
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("<==============> Paises <==============>\n");
+                        Console.ForegroundColor = ConsoleColor.White;
                         foreach (Pais item in listaPaises)
                             Console.WriteLine(item);
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Console.WriteLine("\n\n--------------------------------------------");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case "e":
                         for (int i = 1; i <= grafo.AristasLis.Count; i++)
@@ -87,16 +100,20 @@ namespace TestingGrafo
                         Console.Write("Cual deseas eliminar? ");
                         int pos = int.Parse(Console.ReadLine());
                         Console.Clear();
-                        if(grafo.EliminarConexion(grafo.AristasLis[pos]))
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        if (grafo.EliminarConexion(grafo.AristasLis[pos-1]))
                             Console.WriteLine("------------------ Eliminado -----------------------");
                         else
                             Console.WriteLine("------------------ Error al eliminar -----------------------");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     case "f":
                         Console.WriteLine("Adios");
                         break;
                     default:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("!!!!!!!!!!!!!!!!!! --Opcion no vaida-- !!!!!!!!!!!!!!!!!!\n\n");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
             } while (!opc.Equals("f"));

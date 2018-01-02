@@ -143,6 +143,9 @@ namespace Grafo
 
         //Se crea delegado y evento de una conexion repetida
         public delegate void ConexionRepetidaEvent(Object sender, ConexionEventArgs args);
+        /// <summary>
+        /// Evento que se lanza cuando la conexion se repite, permite la modificacion de la arista que va a ser modificada regresandola en sender
+        /// </summary>
         public event ConexionRepetidaEvent ConexionRepetidaEventHandler;
 
         public GrafoObject()
@@ -199,7 +202,6 @@ namespace Grafo
                         if (VerticesLis[i].Aristas[j] == temporal)
                         {
                             VerticesLis[i].Aristas.RemoveAt(j);
-                            
                         }                        
 
                     }
@@ -216,7 +218,7 @@ namespace Grafo
 
         private bool ExisteVertice(Vertice<T,U> vertice)
         {
-            var it = VerticesLis.Where(x => x.ToString().Equals(vertice.ToString())).FirstOrDefault();
+            Vertice<T,U> it = VerticesLis.Where(x => x.ToString().Equals(vertice.ToString())).FirstOrDefault();
             if (it == null)
                 return false;
             return true;
@@ -224,7 +226,7 @@ namespace Grafo
 
         public void ImprimirGrafo()
         {
-            foreach (var item in AristasLis)
+            foreach (Arista<U,T> item in AristasLis)
             {
                 Console.WriteLine(item.ToString());
             }
